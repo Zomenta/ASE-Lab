@@ -23,6 +23,8 @@ class Config:
     RENDER_SLEEP_SECONDS = 0.4
     RENDER_SEPARATOR_WIDTH = 40
 
-    def __init__(self, seed=None):
+    def __init__(self, seed=None, headless=False, max_steps=None):
         self.seed = seed
+        self.headless = headless
+        self.max_steps = max_steps
         self.rng = random.Random(seed)

@@ -3,7 +3,7 @@ import time
 from core.config import Config
 from environment.world import World
 from agents.agent import Agent
-from simulation.renderer import ConsoleRenderer
+from simulation.renderer import ConsoleRenderer, NullRenderer
 
 
 class Engine:
@@ -12,7 +12,13 @@ class Engine:
 
         self.config = config or Config()
         self.world = World(self.config)
-        self.renderer = renderer or ConsoleRenderer(self.config)
+
+        if renderer is not None:
+            self.renderer = renderer
+        elif self.config.headless:
+            self.renderer = NullRenderer()
+        else:
+            self.renderer = ConsoleRenderer(self.config)
 
         self.agents = [
             Agent(config=self.config)
@@ -40,4 +46,11 @@ class Engine:
 
             self.render()
 
-            time.sleep(Config.RENDER_SLEEP_SECONDS)
+            if (
+                self.config.max_steps is not None
+                and self.step >= self.config.max_steps
+            ):
+                break
+
+            if not self.config.headless:
+                time.sleep(Config.RENDER_SLEEP_SECONDS)

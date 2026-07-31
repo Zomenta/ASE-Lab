@@ -33,3 +33,10 @@ class ConsoleRenderer:
             print(" ".join(row))
 
         print()
+
+
+class NullRenderer:
+    """No-op renderer for headless simulation runs."""
+
+    def render(self, world, agents, step):
+        pass
