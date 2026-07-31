@@ -26,22 +26,3 @@ class World:
                 row.append(Cell(self.config))
 
             self.grid.append(row)
-
-    def display(self, agent):
-
-        print()
-
-        for y in range(self.height):
-
-            row = []
-
-            for x in range(self.width):
-
-                if x == agent.x and y == agent.y:
-                    row.append("A")
-                else:
-                    row.append(self.grid[y][x].symbol())
-
-            print(" ".join(row))
-
-        print()

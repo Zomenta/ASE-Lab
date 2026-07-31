@@ -3,14 +3,16 @@ import time
 from core.config import Config
 from environment.world import World
 from agents.agent import Agent
+from simulation.renderer import ConsoleRenderer
 
 
 class Engine:
 
-    def __init__(self, config=None):
+    def __init__(self, config=None, renderer=None):
 
         self.config = config or Config()
         self.world = World(self.config)
+        self.renderer = renderer or ConsoleRenderer(self.config)
 
         self.agents = [
             Agent(config=self.config)
@@ -28,14 +30,7 @@ class Engine:
                 agent.move(self.world)
 
     def render(self):
-        print("Alive:", self.agents[0].alive)
-        print("\n" * 2)
-
-        print("=" * Config.RENDER_SEPARATOR_WIDTH)
-        print("ASE STEP", self.step)
-        print("=" * Config.RENDER_SEPARATOR_WIDTH)
-
-        self.world.display(self.agents[0])
+        self.renderer.render(self.world, self.agents, self.step)
 
     def run(self):
 
