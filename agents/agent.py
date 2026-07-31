@@ -4,13 +4,14 @@ from core.config import Config
 
 class Agent:
 
-    def __init__(self, x=None, y=None):
+    def __init__(self, x=None, y=None, config=None):
+        self.config = config or Config()
         self.x = x if x is not None else Config.AGENT_START_X
         self.y = y if y is not None else Config.AGENT_START_Y
         self.energy = Config.AGENT_START_ENERGY
         self.age = 0
         self.alive = True
-        self.brain = Brain()
+        self.brain = Brain(self.config)
 
     def move(self, world):
 

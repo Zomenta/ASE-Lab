@@ -1,6 +1,7 @@
-import random
-
 class Brain:
+
+    def __init__(self, config):
+        self.config = config
 
     def decide(self, agent, world):
 
@@ -9,11 +10,11 @@ class Brain:
         best_energy = -1
 
         directions = [
-            (0,0),
-            (0,1),
-            (0,-1),
-            (1,0),
-            (-1,0)
+            (0, 0),
+            (0, 1),
+            (0, -1),
+            (1, 0),
+            (-1, 0),
         ]
 
         for dx, dy in directions:
@@ -32,7 +33,7 @@ class Brain:
 
         if best_energy == 0:
 
-            random.shuffle(directions)
+            self.config.rng.shuffle(directions)
 
             for dx, dy in directions:
 

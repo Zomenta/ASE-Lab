@@ -1,3 +1,6 @@
+import random
+
+
 class Config:
     """Central configuration for ASE simulation parameters."""
 
@@ -19,3 +22,7 @@ class Config:
     # Simulation display
     RENDER_SLEEP_SECONDS = 0.4
     RENDER_SEPARATOR_WIDTH = 40
+
+    def __init__(self, seed=None):
+        self.seed = seed
+        self.rng = random.Random(seed)

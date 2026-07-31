@@ -4,7 +4,14 @@ from core.config import Config
 
 class World:
 
-    def __init__(self, width=None, height=None):
+    def __init__(self, config=None, width=None, height=None):
+
+        if isinstance(config, Config):
+            self.config = config
+        else:
+            if config is not None:
+                width = config
+            self.config = Config()
 
         self.width = width if width is not None else Config.WORLD_WIDTH
         self.height = height if height is not None else Config.WORLD_HEIGHT
@@ -16,7 +23,7 @@ class World:
             row = []
 
             for x in range(self.width):
-                row.append(Cell())
+                row.append(Cell(self.config))
 
             self.grid.append(row)
 

@@ -7,12 +7,13 @@ from agents.agent import Agent
 
 class Engine:
 
-    def __init__(self):
+    def __init__(self, config=None):
 
-        self.world = World()
+        self.config = config or Config()
+        self.world = World(self.config)
 
         self.agents = [
-            Agent()
+            Agent(config=self.config)
         ]
 
         self.step = 0
