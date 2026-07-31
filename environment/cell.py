@@ -1,11 +1,16 @@
 import random
 
+from core.config import Config
+
+
 class Cell:
 
     def __init__(self):
 
-        if random.random() < 0.15:
-            self.energy = random.randint(20,50)
+        if random.random() < Config.CELL_ENERGY_SPAWN_CHANCE:
+            self.energy = random.randint(
+                Config.CELL_ENERGY_MIN, Config.CELL_ENERGY_MAX
+            )
         else:
             self.energy = 0
 

@@ -1,34 +1,36 @@
 from environment.cell import Cell
+from core.config import Config
+
 
 class World:
 
-    def __init__(self,width,height):
+    def __init__(self, width=None, height=None):
 
-        self.width = width
-        self.height = height
+        self.width = width if width is not None else Config.WORLD_WIDTH
+        self.height = height if height is not None else Config.WORLD_HEIGHT
 
-        self.grid=[]
+        self.grid = []
 
-        for y in range(height):
+        for y in range(self.height):
 
-            row=[]
+            row = []
 
-            for x in range(width):
+            for x in range(self.width):
                 row.append(Cell())
 
             self.grid.append(row)
 
-    def display(self,agent):
+    def display(self, agent):
 
         print()
 
         for y in range(self.height):
 
-            row=[]
+            row = []
 
             for x in range(self.width):
 
-                if x==agent.x and y==agent.y:
+                if x == agent.x and y == agent.y:
                     row.append("A")
                 else:
                     row.append(self.grid[y][x].symbol())

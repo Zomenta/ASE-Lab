@@ -1,5 +1,6 @@
 import time
 
+from core.config import Config
 from environment.world import World
 from agents.agent import Agent
 
@@ -8,10 +9,10 @@ class Engine:
 
     def __init__(self):
 
-        self.world = World(10,10)
+        self.world = World()
 
         self.agents = [
-            Agent(5,5)
+            Agent()
         ]
 
         self.step = 0
@@ -27,11 +28,11 @@ class Engine:
 
     def render(self):
         print("Alive:", self.agents[0].alive)
-        print("\n"*2)
+        print("\n" * 2)
 
-        print("="*40)
+        print("=" * Config.RENDER_SEPARATOR_WIDTH)
         print("ASE STEP", self.step)
-        print("="*40)
+        print("=" * Config.RENDER_SEPARATOR_WIDTH)
 
         self.world.display(self.agents[0])
 
@@ -43,4 +44,4 @@ class Engine:
 
             self.render()
 
-            time.sleep(0.4)
+            time.sleep(Config.RENDER_SLEEP_SECONDS)
