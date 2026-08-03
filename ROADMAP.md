@@ -1,87 +1,60 @@
-ASE Research Program
+Milestone 1
 
-Stage 1
+Formal ontology
 
-Adaptive Motion
+Status:
+✓ Completed
 
-Question
+------------------
 
-Can simple local optimization produce persistent survival?
+Milestone 2
 
-Status
+Operational definitions
 
-Completed
+Status:
+In Progress
 
--------------------------
+------------------
 
-Stage 2
+Milestone 3
 
-Resource Competition
+Toy simulator
 
-Question
+Status:
+Not Started
 
-Can multiple adaptive systems coexist?
+------------------
 
-Status
+Milestone 4
 
-Current
+First falsifiable prediction
 
--------------------------
+Status:
+Not Started
 
-Stage 3
+------------------
 
-Natural Selection
+Milestone 5
 
-Question
+First publication
 
-Can reproduction plus scarcity create evolution?
+Status:
+Not Started
 
--------------------------
+------------------
 
-Stage 4
+Milestone 6
 
-Learning
+Cross-domain validation
 
-Question
+Status:
+Not Started
 
-Can lifetime memory outperform evolution?
+------------------
 
--------------------------
+Milestone 7
 
-Stage 5
+Formal theorem proofs
 
-Communication
-
-Question
-
-Can communication evolve without explicit programming?
-
--------------------------
-
-Stage 6
-
-Cooperation
-
-Question
-
-When does cooperation emerge?
-
--------------------------
-
-Stage 7
-
-Institutions
-
-Question
-
-Why do civilizations invent rules?
-
--------------------------
-
-Stage 8
-
-Scientific Discovery
-
-Question
-
-Can adaptive systems invent science?
+Status:
+Not Started

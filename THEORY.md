@@ -1,568 +1,378 @@
 # THEORY.md
 
-# Adaptive State Theory
-## Draft Chapter for the Adaptive Systems Institute
+# Adaptive State Theory (AST)
 
-Version: 0.1  
-Status: Draft  
-Scope: Foundational theory overview for ASE and ASI
+**Version:** 1.0 (Foundational Draft)
+**Status:** Theory Foundation
 
 ---
 
-# 1. Purpose
+# Purpose
 
-Adaptive State Theory (AST) is the proposed formal theory underlying the Adaptive Systems Institute (ASI) and the Adaptive Systems Engine (ASE).
+Adaptive State Theory (AST) is a substrate-neutral mathematical framework for understanding adaptive systems through a single central question:
 
-Its purpose is to define a general framework for systems that modify future behavior in response to interaction with an environment under constraints of information, cost, memory, and feedback.
+> **What determines whether an adaptive system remains viable under changing constraints over time?**
 
-AST is not presented here as a completed or proven theory.
+Rather than treating optimization, reward, fitness, or efficiency as the primary objective, AST proposes that **long-term viability** is the universal outcome variable.
 
-It is a research program designed to produce:
-
-- precise definitions,
-- measurable quantities,
-- falsifiable hypotheses,
-- reproducible experiments,
-- and a formal bridge between simulation and theory.
+Optimization, learning, evolution, resilience, and control are interpreted as mechanisms that influence viability rather than objectives in themselves.
 
 ---
 
-# 2. Scope
+# Design Principles
 
-AST is intended to apply to systems such as:
+AST is built around several guiding principles.
 
-- cells,
-- organisms,
-- groups,
-- institutions,
-- economies,
-- artificial agents,
-- and scientific communities.
-
-The theory is substrate-neutral.
-
-That is, it does not assume adaptation belongs only to living systems.
-
-Instead, it treats adaptation as a general process that may occur anywhere there is:
-
-- state,
-- environment,
-- interaction,
-- feedback,
-- cost,
-- and persistence under change.
+* **Substrate Neutrality** — The same theory should apply to biological, artificial, economic, institutional, and cultural systems.
+* **Viability First** — Long-term persistence is the primary quantity of interest.
+* **Constraint-Based** — Adaptation occurs under limited resources, uncertainty, and environmental pressure.
+* **Modularity** — The theory is separated from specific mathematical models and implementation choices.
+* **Falsifiability** — Every principle must generate observable predictions and possible failure conditions.
 
 ---
 
-# 3. Fundamental Postulates
+# Core Ontology
 
-AST is built on a small set of postulates.
+An adaptive system is defined as
 
-These postulates are intentionally minimal.
+[
+S=(X,E,O,U,\pi,M,T,V,I)
+]
 
-They are not claimed to be complete.
+where
 
-They are claimed only to be sufficient as a starting point for a formal theory of adaptation.
+| Symbol | Meaning                   |
+| ------ | ------------------------- |
+| **X**  | Internal state space      |
+| **E**  | Environment               |
+| **O**  | Observation operator      |
+| **U**  | Action space              |
+| **π**  | Adaptive policy           |
+| **M**  | Memory operator           |
+| **T**  | State-transition operator |
+| **V**  | Viability functional      |
+| **I**  | Identity rule             |
 
----
-
-## Postulate 1 — State Postulate
-
-Every adaptive system occupies a state.
-
-The state may include internal variables, memory, resources, and other quantities relevant to future behavior.
-
-We represent the system state at time `t` as:
-
-`x_t ∈ X`
-
-where `X` is the system’s internal state space.
-
----
-
-## Postulate 2 — Environment Postulate
-
-Every adaptive system interacts with an environment.
-
-The environment contains variables not fully controlled by the system.
-
-We represent the environment at time `t` as:
-
-`e_t ∈ E`
-
-where `E` is the environment state space.
+These concepts form the irreducible vocabulary of AST.
 
 ---
 
-## Postulate 3 — Interaction Postulate
+# Fundamental Concepts
 
-Adaptive systems do not act directly on reality.
+## Viability
 
-They act through observations and decisions.
+Viability is the probability that a system continues functioning as a coherent adaptive system over a specified time horizon.
 
-An observation is produced from the system and environment:
+Rather than treating survival as binary, AST models viability as a probabilistic quantity constrained by acceptable system states.
 
-`o_t = O(x_t, e_t)`
-
-An action is then selected from the observation, memory, and policy:
-
-`a_t ~ π(o_t, m_t, θ_t)`
-
-where:
-
-- `π` is the decision policy,
-- `m_t` is memory,
-- `θ_t` is the current policy parameterization.
+A system is viable when its trajectory remains inside a **viable set**.
 
 ---
 
-## Postulate 4 — Transition Postulate
+## Viable Set
 
-Actions produce consequences.
+The viable set **K** is the collection of states that satisfy the functional requirements necessary for continued operation.
 
-The system and environment evolve jointly after action.
-
-`x_(t+1) = T_X(x_t, a_t, e_t, ξ_t)`
-
-`e_(t+1) = T_E(e_t, a_t, x_t, ζ_t)`
-
-where `ξ_t` and `ζ_t` represent stochastic influences or unmodeled variation.
+Crossing the boundary of **K** represents functional failure.
 
 ---
 
-## Postulate 5 — Cost Postulate
+## Viability Kernel
 
-Every adaptive action has a cost.
+The viability kernel is the largest subset of the viable set from which at least one admissible policy can keep the system viable indefinitely (or for the required time horizon).
 
-The cost may be energetic, informational, temporal, social, or institutional.
-
-For adaptation to be meaningful, actions cannot be free.
+The viability kernel defines the region where adaptation is still possible.
 
 ---
 
-## Postulate 6 — Feedback Postulate
+## Adaptive Capacity
 
-The outcome of action influences future behavior.
+Adaptive Capacity is the system's ability to maintain viability despite environmental change.
 
-This influence may occur through memory, learning, inheritance, institutional recording, or policy update.
+Capacity may arise from:
 
-`m_(t+1) = M(m_t, o_t, a_t, r_t)`
+* redundancy
+* flexibility
+* learning
+* repair
+* cooperation
+* computation
+* energy availability
+* institutional organization
 
-where `r_t` is feedback from the outcome of action `a_t`.
-
----
-
-## Postulate 7 — Persistence Postulate
-
-Adaptive systems tend to persist when their ability to respond is sufficient relative to environmental pressure.
-
-Persistence is not guaranteed.
-
-It is conditional.
-
-Systems that cannot continue adapting under constraint eventually fail, disappear, or are replaced.
+These are sources of capacity, not capacity itself.
 
 ---
 
-# 4. Core Definitions
+## Adaptive Pressure
 
-The following definitions make the postulates operational.
+Adaptive Pressure is the expected future loss imposed by environmental conditions.
 
----
+Sources include:
 
-## Definition 4.1 — Adaptive System
+* scarcity
+* competition
+* uncertainty
+* conflict
+* disturbances
+* information degradation
+* resource limitations
 
-An adaptive system is any system whose future behavior is modified by interaction with its environment.
-
-Formally, an adaptive system is a tuple:
-
-`S = (X, E, O, U, π, M, T, Φ)`
-
-where:
-
-- `X` = internal state space
-- `E` = environment state space
-- `O` = observation function
-- `U` = action space
-- `π` = policy or decision function
-- `M` = memory update operator
-- `T` = transition operator
-- `Φ` = persistence or fitness functional
+Pressure is external to the system but affects viability.
 
 ---
 
-## Definition 4.2 — Memory
+## Memory
 
-Memory is any mechanism by which past information influences future decisions.
+Memory is any retained state that causally improves future viability.
 
 Memory may be:
 
-- genetic,
-- neural,
-- cultural,
-- institutional,
-- or digital.
+* genetic
+* neural
+* learned
+* institutional
+* cultural
+* digital
 
-Memory does not require consciousness.
+AST intentionally avoids defining memory through one specific implementation.
+
+Information bottleneck methods, predictive information, compression metrics, and other approaches are measurement tools—not definitions.
 
 ---
 
-## Definition 4.3 — Information
+## Cost
 
-Information is any representation that reduces uncertainty for a future decision.
+Cost is the expenditure required to adapt.
+
+Examples include:
+
+* energy
+* computation
+* time
+* coordination
+* opportunity cost
+* resources
+
+Adaptation is never assumed to be free.
+
+---
+
+## Adaptive Timescale
 
 AST distinguishes between:
 
-- information quantity,
-- and information quality.
+* Environmental Timescale
+* Adaptive Timescale
 
-A system may have a large amount of information and still behave poorly if that information is inaccurate or irrelevant.
+Their ratio determines whether adaptation can keep pace with environmental change.
 
----
-
-## Definition 4.4 — Fitness
-
-Fitness is the expected ability of a system to continue adapting in its environment.
-
-In AST, fitness is broader than reproductive success.
-
-It may apply to systems that reproduce, and to systems that do not.
+When environments change faster than adaptation can occur, viability decreases.
 
 ---
 
-## Definition 4.5 — Persistence
+## Identity
 
-Persistence is the ability of a system to continue existing or functioning under changing conditions.
+Identity is a classification rule.
 
-Persistence can be measured through survival time, stability, reproducibility, or continued task performance depending on context.
+It determines whether two system states should be considered the same adaptive system.
 
----
-
-# 5. Fundamental Adaptive Quantities
-
-These quantities are not yet claimed as universal physical constants.
-
-They are working observables designed to support experimental evaluation.
+Identity is **not** a primary dynamical variable.
 
 ---
 
-## Definition 5.1 — Adaptive Pressure
+# Derived Concepts
 
-Adaptive Pressure `P_t` is the degree of difficulty imposed on a system by its environment at time `t`.
+## Adaptive Balance
 
-It may include:
+Adaptive Balance represents the relationship between adaptive capacity and adaptive pressure.
 
-- scarcity,
-- competition,
-- noise,
-- uncertainty,
-- instability,
-- conflict,
-- or loss of information.
+Conceptually,
 
-`P_t >= 0`
+> Capacity exceeding pressure increases the likelihood of long-term viability.
+
+Adaptive Balance is a diagnostic quantity rather than a governing law.
 
 ---
 
-## Definition 5.2 — Adaptive Capacity
+## Adaptive Efficiency
 
-Adaptive Capacity `C_t` is the ability of a system to respond successfully to adaptive pressure at time `t`.
+Adaptive Efficiency measures the increase in viability achieved per unit adaptation cost.
 
-It may depend on:
-
-- energy,
-- memory,
-- information quality,
-- learning ability,
-- communication,
-- cooperation,
-- and institutional support.
-
-`C_t >= 0`
+Efficient systems improve viability while minimizing required resources.
 
 ---
 
-## Definition 5.3 — Adaptive Balance
+## Adaptation
 
-Adaptive Balance is the difference between capacity and pressure:
+Adaptation is defined as any change that increases expected long-term viability while respecting resource constraints.
 
-`Δ_t = C_t - P_t`
-
-Interpretation:
-
-- if `Δ_t > 0`, the system is likely to persist,
-- if `Δ_t < 0`, the system is likely to fail,
-- if `Δ_t ≈ 0`, the system is near a critical boundary.
-
-This is a working relation, not a final theorem.
+Different mechanisms—including learning, evolution, cooperation, structural reorganization, and niche construction—are all special cases of adaptation.
 
 ---
 
-## Definition 5.4 — Adaptive Cost
+# Architecture
 
-Adaptive Cost is the total price paid by the system to produce a behavior or maintain a state.
+AST is intentionally separated into three layers.
 
-This may include:
+## Layer 1 — Foundation
 
-- energy expenditure,
-- time,
-- risk,
-- loss of opportunity,
-- or coordination overhead.
+Defines:
 
----
+* ontology
+* viability
+* capacity
+* pressure
+* memory
+* cost
+* identity
+* viable sets
+* viability kernels
 
-## Definition 5.5 — Adaptive Efficiency
-
-Adaptive Efficiency is the ratio of adaptive benefit to adaptive cost:
-
-`η_t = benefit_t / cost_t`
-
-Higher efficiency means more persistence or better performance per unit cost.
+This layer is independent of particular mathematical models.
 
 ---
 
-# 6. State Dynamics
+## Layer 2 — Dynamics
 
-AST treats adaptation as a process of state transition.
+Contains candidate mathematical models describing viability change.
 
-A minimal cycle is:
+Possible model families include:
 
-1. environment changes,
-2. system observes,
-3. system decides,
-4. system acts,
-5. system receives feedback,
-6. system updates memory or policy,
-7. system transitions to a new state.
+* deterministic dynamics
+* stochastic dynamics
+* discrete-time models
+* continuous-time models
+* constrained control models
+* cooperative models
 
-This can be represented as:
-
-`o_t = O(x_t, e_t)`
-
-`a_t ~ π(o_t, m_t, θ_t)`
-
-`x_(t+1) = T_X(x_t, a_t, e_t, ξ_t)`
-
-`e_(t+1) = T_E(e_t, a_t, x_t, ζ_t)`
-
-`m_(t+1) = M(m_t, o_t, a_t, r_t)`
-
-This cycle is the computational heart of AST.
+No single equation defines AST.
 
 ---
 
-# 7. Axioms
+## Layer 3 — Empirical Science
 
-The theory is currently anchored by the following axioms.
+Contains:
 
-## Axiom 1 — State Axiom
-Every adaptive system has a state.
+* operational definitions
+* measurement protocols
+* simulations
+* experiments
+* benchmarks
+* statistical inference
+* falsification
+* counterexample search
 
-## Axiom 2 — Environment Axiom
-Every adaptive system exists within an environment.
-
-## Axiom 3 — Interaction Axiom
-Interaction changes state.
-
-## Axiom 4 — Feedback Axiom
-Consequences influence future behavior.
-
-## Axiom 5 — Cost Axiom
-Every adaptive action has a cost.
-
-## Axiom 6 — Selection Axiom
-Among available behaviors, some persist better than others under constraints.
-
-## Axiom 7 — Memory Axiom
-Past outcomes can influence future outcomes.
-
-## Axiom 8 — Hierarchy Axiom
-Adaptive systems may be nested across scales.
-
-## Axiom 9 — Information Axiom
-Information quality affects adaptive success.
-
-## Axiom 10 — Revision Axiom
-Any adaptive theory must remain open to revision by evidence.
+This layer connects AST to observable systems.
 
 ---
 
-# 8. Derived Propositions
+# Operationalization
 
-The following propositions are intended as testable statements.
+Every core concept should be specified at four levels.
 
-They are not final theorems.
+| Level         | Description                                      |
+| ------------- | ------------------------------------------------ |
+| Conceptual    | What the variable means                          |
+| Mathematical  | Formal definition                                |
+| Observable    | How it can be measured                           |
+| Computational | How it is implemented in simulation or inference |
 
----
-
-## Proposition 8.1 — Persistence Requires Balance
-
-A system is more likely to persist when adaptive capacity exceeds adaptive pressure.
-
----
-
-## Proposition 8.2 — Information Improves Capacity
-
-Under uncertainty, higher-quality information increases expected adaptive capacity.
+This separation keeps AST independent of any particular measurement methodology.
 
 ---
 
-## Proposition 8.3 — Memory Reduces Repeated Search
+# Candidate Dynamic Models
 
-Memory can reduce future adaptive cost by preserving successful information.
+AST does not require a universal governing equation.
 
----
+Instead, it defines a family of admissible models whose purpose is to estimate viability.
 
-## Proposition 8.4 — Communication Becomes Valuable Under Coordination Pressure
-
-Communication becomes adaptive when the value of shared information exceeds the cost of sharing it.
+Different domains may require different dynamics while sharing the same ontology.
 
 ---
 
-## Proposition 8.5 — Cooperation Emerges Under Repeated Mutual Benefit
+# Falsifiability
 
-Cooperation is more likely when repeated interaction makes cooperative behavior more persistent than defection.
+Every AST principle must satisfy four requirements.
 
----
+1. A clear prediction.
+2. Observable variables.
+3. An experimental or simulation test.
+4. A defined failure condition.
 
-## Proposition 8.6 — Institutions Are Stable Adaptive Solutions
+Examples include:
 
-Institutions emerge when recurring coordination problems require persistent, rule-like responses.
+* Higher adaptive capacity should improve long-term viability under comparable pressure.
+* Predictive memory should reduce future search effort or forecasting error.
+* Better timescale matching should improve viability.
+* Cooperation should increase viability only when its benefits exceed coordination costs.
 
----
-
-## Proposition 8.7 — Externalized Memory Enables Scale
-
-Writing, software, laws, and scientific records allow adaptive information to persist beyond individual lifetimes.
-
----
-
-# 9. Observables
-
-A theory becomes scientific only when it is measurable.
-
-AST therefore requires observables at multiple scales.
-
-## Individual-level observables
-- survival time
-- energy balance
-- action selection frequency
-- memory retention
-- reproduction success
-
-## Population-level observables
-- population size
-- strategy variance
-- cooperation frequency
-- specialization
-- extinction probability
-
-## Institutional-level observables
-- stability
-- compliance rate
-- coordination cost
-- information throughput
-- rule persistence
-
-## Theory-level observables
-- predictive accuracy
-- reproducibility
-- falsification rate
-- parameter sensitivity
+Failure of these predictions requires revision of the associated principle.
 
 ---
 
-# 10. Research Hypotheses
+# Scope
 
-The initial research program of AST is built around the following hypotheses.
+AST is intended to provide a common language for adaptive systems across domains including:
 
-## H1
-Adaptive systems exposed to higher pressure require higher capacity to persist.
+* Biology
+* Artificial Intelligence
+* Economics
+* Organizations
+* Institutions
+* Cultural evolution
+* Complex engineered systems
 
-## H2
-Memory improves persistence only after environmental complexity exceeds a threshold.
-
-## H3
-Communication emerges only when the cost of independent search exceeds the cost of sharing information.
-
-## H4
-Cooperation emerges when repeated interaction makes defection less beneficial over time.
-
-## H5
-Institutions emerge when recurring coordination problems cannot be solved reliably by individual choice alone.
-
-## H6
-Civilization is a stable multi-layer adaptive structure with externalized memory.
-
-## H7
-Scientific communities are adaptive systems that evolve methods for improving the quality of their own knowledge.
+The ontology remains constant while measurements and dynamics may differ.
 
 ---
 
-# 11. Computational Interpretation in ASE
+# What AST Is
 
-AST is designed to map directly onto ASE-Lab.
+AST is:
 
-In the simulation environment:
-
-- `x_t` becomes agent state,
-- `e_t` becomes world state,
-- `o_t` becomes observation,
-- `a_t` becomes action,
-- `m_t` becomes memory,
-- `π` becomes the brain or policy,
-- `T` becomes the update system,
-- `Φ` becomes the persistence measure.
-
-This mapping allows the theory to be tested computationally.
+* a viability-centered theory
+* a substrate-neutral ontology
+* a modular mathematical framework
+* a research program for adaptive systems
 
 ---
 
-# 12. Limits of the Theory
+# What AST Is Not
 
-AST remains a draft framework.
+AST is **not**:
 
-Its current limitations include:
+* a single governing equation
+* a replacement for control theory
+* a replacement for evolutionary theory
+* a replacement for reinforcement learning
+* a replacement for resilience theory
 
-- some terms are still qualitative,
-- some observables need operational definition,
-- the equations are intentionally minimal,
-- the multi-scale relationships are still conjectural,
-- the theory requires experimental validation.
-
-These limitations are expected.
-
-The theory is meant to evolve with evidence.
+Instead, AST provides a higher-level framework within which these theories can be interpreted, compared, and integrated according to their contributions to long-term viability.
 
 ---
 
-# 13. Conclusion
+# Open Research Questions
 
-Adaptive State Theory proposes that many adaptive systems may be understood through a shared formal language involving:
+Current priorities include:
 
-- state,
-- environment,
-- observation,
-- action,
-- feedback,
-- memory,
-- cost,
-- pressure,
-- capacity,
-- persistence,
-- and selection.
-
-The theory is deliberately general.
-
-Its purpose is not to replace existing sciences.
-
-Its purpose is to connect them through a common adaptive framework.
-
-The next step is to test the theory experimentally inside ASE-Lab.
+1. Formal derivation of candidate governing equations.
+2. Mathematical analysis of viability dynamics.
+3. Operational definitions for every core variable.
+4. Cross-domain case studies.
+5. Counterexample discovery.
+6. Formal theorem proofs.
+7. Benchmarking against existing adaptive-system theories.
 
 ---
 
-# Chief Scientist Note
+# Vision
 
-This chapter should be treated as the theoretical backbone of the Institute, not as a finalized doctrine. The postulates are intentionally small in number. That is good. A strong theory should be built from a few principles that generate many consequences. If this framework is correct, then later chapters and experiments should refine it. If it is wrong, the experiments should reveal that quickly. Either outcome is scientifically useful.
+Adaptive State Theory proposes that **viability** is the most fundamental quantity shared by adaptive systems.
+
+Rather than beginning with optimization, reward, or fitness, AST begins with a more basic question:
+
+> **What allows an adaptive system to continue existing under changing conditions?**
+
+By treating viability as the central organizing principle, AST aims to provide a unified theoretical foundation for studying adaptation across natural and artificial systems.
